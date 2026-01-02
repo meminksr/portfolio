@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portföyüm</title>
+    <title>Mehmet Emin - Yazılım Geliştirici</title>
     <style>
         * {
             margin: 0;
@@ -13,57 +13,143 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
+            background: #0a0a0a;
+            color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            opacity: 0.1;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 10%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50px, 50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(0, 100px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-50px, 50px) rotate(270deg);
+            }
         }
 
         header {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1rem 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);
         }
 
         nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 0 3rem;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         nav a {
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
         }
 
-        nav a:hover {
-            color: #667eea;
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         section {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 5rem 2rem;
+            padding: 6rem 3rem;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -72,192 +158,407 @@
 
         #hero {
             text-align: center;
-            color: white;
-            margin-top: 60px;
+            margin-top: 80px;
+            flex-direction: column;
         }
 
-        #hero h1 {
-            font-size: 3.5rem;
+        .hero-title {
+            font-size: 5rem;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             animation: fadeInUp 1s ease;
+            font-weight: 900;
         }
 
-        #hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+        .hero-subtitle {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #bbb;
             animation: fadeInUp 1s ease 0.2s both;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: white;
+        .typing-text {
+            font-size: 1.5rem;
             color: #667eea;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.4s both;
+            min-height: 50px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 1s ease 0.4s both;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
         }
 
         .content-section {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 4rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             width: 100%;
+            border: 1px solid rgba(102, 126, 234, 0.2);
         }
 
         h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #667eea;
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-align: center;
+            font-weight: 900;
         }
 
         .about-content {
             display: grid;
             grid-template-columns: 1fr 2fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: center;
         }
 
         .profile-img {
-            width: 250px;
-            height: 250px;
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 5rem;
-            color: white;
+            font-size: 8rem;
             margin: 0 auto;
+            position: relative;
+            animation: pulse 3s infinite;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                box-shadow: 0 20px 80px rgba(118, 75, 162, 0.6);
+            }
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #ddd;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #bbb;
+            margin-top: 0.5rem;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
 
         .skill-card {
-            padding: 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px;
-            transition: transform 0.3s;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+            border-radius: 20px;
+            transition: all 0.4s;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
         }
 
         .skill-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
         }
 
-        .skill-card h3 {
-            font-size: 1.5rem;
+        .skill-icon {
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
 
+        .skill-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .skill-card p {
+            color: #bbb;
+            margin-bottom: 1.5rem;
+        }
+
         .skill-bar {
-            background: rgba(255,255,255,0.3);
-            height: 10px;
-            border-radius: 5px;
+            background: rgba(255,255,255,0.1);
+            height: 12px;
+            border-radius: 10px;
             overflow: hidden;
-            margin-top: 1rem;
+            position: relative;
         }
 
         .skill-progress {
-            background: white;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
             height: 100%;
-            border-radius: 5px;
-            transition: width 1s ease;
+            border-radius: 10px;
+            position: relative;
+            animation: fillBar 2s ease-out forwards;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+
+        .skill-percentage {
+            position: absolute;
+            right: 10px;
+            top: -25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #667eea;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
         .project-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 3rem;
+            border-radius: 25px;
+            transition: all 0.4s;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1), transparent);
+            transform: scale(0);
+            transition: transform 0.6s;
+        }
+
+        .project-card:hover::after {
+            transform: scale(1);
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .project-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .project-card h3 {
-            color: #667eea;
+            color: #fff;
             margin-bottom: 1rem;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card p {
+            color: #bbb;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tag {
+            padding: 0.5rem 1rem;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #667eea;
+            border: 1px solid rgba(102, 126, 234, 0.3);
         }
 
         .contact-form {
-            max-width: 600px;
-            margin: 2rem auto 0;
+            max-width: 700px;
+            margin: 3rem auto 0;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: #ddd;
+            font-size: 1.1rem;
         }
 
         input, textarea {
             width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 15px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            color: #fff;
+            transition: all 0.3s;
         }
 
         input:focus, textarea:focus {
             outline: none;
             border-color: #667eea;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
         }
 
         textarea {
             resize: vertical;
-            min-height: 150px;
+            min-height: 180px;
         }
 
         button[type="submit"] {
             width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
+            border-radius: 15px;
+            font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s;
         }
 
         button[type="submit"]:hover {
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-item-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -266,12 +567,12 @@
         }
 
         @media (max-width: 768px) {
-            #hero h1 {
-                font-size: 2rem;
+            .hero-title {
+                font-size: 3rem;
             }
 
-            #hero p {
-                font-size: 1.2rem;
+            .hero-subtitle {
+                font-size: 1.5rem;
             }
 
             .about-content {
@@ -279,15 +580,30 @@
             }
 
             nav ul {
-                gap: 1rem;
+                gap: 1.5rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
+<div class="background-animation"></div>
+<div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+
 <header>
     <nav>
-        <div class="logo">Portföyüm</div>
+        <div class="logo">MEK.dev</div>
         <ul>
             <li><a href="#hero">Ana Sayfa</a></li>
             <li><a href="#about">Hakkımda</a></li>
@@ -299,9 +615,13 @@
 </header>
 
 <section id="hero">
-    <h1>Merhaba, Ben [MEHMET]</h1>
-    <p>Yazılım Geliştirici & Programlama Öğrencisi</p>
-    <a href="#about" class="btn">Daha Fazla Keşfet</a>
+    <h1 class="hero-title">Mehmet Emin</h1>
+    <p class="hero-subtitle">Full Stack Developer & Programlama Öğrencisi</p>
+    <div class="typing-text" id="typingText"></div>
+    <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">Projelerimi İncele</a>
+        <a href="#contact" class="btn btn-secondary">Benimle İletişime Geç</a>
+    </div>
 </section>
 
 <section id="about">
@@ -309,19 +629,36 @@
         <h2>Hakkımda</h2>
         <div class="about-content">
             <div class="profile-img">👨‍💻</div>
-            <div>
-                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
-                    Merhaba! Ben programlama alanında kendimi geliştiren tutkulu bir öğrenciyim.
-                    Teknolojiye olan ilgim sayesinde her gün yeni şeyler öğreniyor ve projeler geliştiriyorum.
+            <div class="about-text">
+                <p>
+                    Merhaba! Ben Ahmet, teknoloji ve yazılım dünyasına tutkuyla bağlı bir programlama öğrencisiyim.
+                    Her gün yeni teknolojiler öğreniyor, farklı projeler geliştiriyor ve kodlama becerilerimi
+                    sürekli olarak geliştiriyorum.
                 </p>
-                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
-                    Web geliştirme, mobil uygulama tasarımı ve yazılım mühendisliği konularında deneyim kazanıyorum.
-                    Amacım, kullanıcı dostu ve etkili çözümler üreterek teknoloji dünyasına katkıda bulunmak.
+                <p>
+                    Web geliştirme, veri bilimi ve yapay zeka alanlarında deneyim kazanıyorum. Modern teknolojileri
+                    kullanarak kullanıcı odaklı ve etkili çözümler üretmeyi hedefliyorum. Açık kaynak projelere
+                    katkıda bulunmayı ve teknoloji topluluğuyla bilgi paylaşmayı seviyorum.
                 </p>
-                <p style="font-size: 1.1rem;">
-                    Sürekli öğrenmeye ve kendimi geliştirmeye açığım. Yeni teknolojileri takip ediyor ve
-                    pratik projelerle bilgimi pekiştiriyorum.
+                <p>
+                    Amacım, inovatif çözümler üreterek teknoloji dünyasına değer katmak ve sürekli gelişen bu
+                    alanda kendimi kanıtlamak. Problem çözme yeteneğim ve analitik düşünce yapım sayesinde
+                    karmaşık projeleri başarıyla tamamlıyorum.
                 </p>
+            </div>
+        </div>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Tamamlanan Proje</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Teknoloji & Dil</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2+</div>
+                <div class="stat-label">Yıllık Deneyim</div>
             </div>
         </div>
     </div>
@@ -329,48 +666,66 @@
 
 <section id="skills">
     <div class="content-section">
-        <h2>Yetenekler & Beceriler</h2>
+        <h2>Yetenekler & Teknolojiler</h2>
         <div class="skills-grid">
             <div class="skill-card">
-                <h3>Web Geliştirme</h3>
-                <p>HTML, CSS, JavaScript ile modern web siteleri geliştirme</p>
+                <div class="skill-icon">🌐</div>
+                <h3>Frontend Development</h3>
+                <p>HTML5, CSS3, JavaScript, React, Vue.js ile modern ve responsive web uygulamaları</p>
                 <div class="skill-bar">
-                    <div class="skill-progress" style="width: 85%"></div>
+                    <div class="skill-progress" style="width: 90%">
+                        <span class="skill-percentage">90%</span>
+                    </div>
                 </div>
             </div>
             <div class="skill-card">
-                <h3>Python</h3>
-                <p>Veri analizi, otomasyon ve backend geliştirme</p>
+                <div class="skill-icon">⚙️</div>
+                <h3>Backend Development</h3>
+                <p>Node.js, Python, Django, Express.js ile güçlü sunucu taraflı uygulamalar</p>
                 <div class="skill-bar">
-                    <div class="skill-progress" style="width: 75%"></div>
+                    <div class="skill-progress" style="width: 85%">
+                        <span class="skill-percentage">85%</span>
+                    </div>
                 </div>
             </div>
             <div class="skill-card">
-                <h3>Java</h3>
-                <p>Nesne yönelimli programlama ve uygulama geliştirme</p>
+                <div class="skill-icon">🗄️</div>
+                <h3>Database Management</h3>
+                <p>MySQL, PostgreSQL, MongoDB ile veritabanı tasarımı ve yönetimi</p>
                 <div class="skill-bar">
-                    <div class="skill-progress" style="width: 70%"></div>
+                    <div class="skill-progress" style="width: 80%">
+                        <span class="skill-percentage">80%</span>
+                    </div>
                 </div>
             </div>
             <div class="skill-card">
-                <h3>Veritabanı</h3>
-                <p>SQL, MySQL ile veri yönetimi</p>
+                <div class="skill-icon">🐍</div>
+                <h3>Python & Data Science</h3>
+                <p>Pandas, NumPy, Matplotlib ile veri analizi ve görselleştirme</p>
                 <div class="skill-bar">
-                    <div class="skill-progress" style="width: 65%"></div>
+                    <div class="skill-progress" style="width: 75%">
+                        <span class="skill-percentage">75%</span>
+                    </div>
                 </div>
             </div>
             <div class="skill-card">
-                <h3>Git & GitHub</h3>
-                <p>Versiyon kontrolü ve işbirliği</p>
+                <div class="skill-icon">☕</div>
+                <h3>Java & OOP</h3>
+                <p>Nesne yönelimli programlama, Spring Boot, Android geliştirme</p>
                 <div class="skill-bar">
-                    <div class="skill-progress" style="width: 80%"></div>
+                    <div class="skill-progress" style="width: 78%">
+                        <span class="skill-percentage">78%</span>
+                    </div>
                 </div>
             </div>
             <div class="skill-card">
-                <h3>Problem Çözme</h3>
-                <p>Algoritmik düşünme ve analitik yaklaşım</p>
+                <div class="skill-icon">🔧</div>
+                <h3>DevOps & Tools</h3>
+                <p>Git, Docker, CI/CD, AWS temel bilgisi ve versiyon kontrolü</p>
                 <div class="skill-bar">
-                    <div class="skill-progress" style="width: 90%"></div>
+                    <div class="skill-progress" style="width: 82%">
+                        <span class="skill-percentage">82%</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -379,31 +734,69 @@
 
 <section id="projects">
     <div class="content-section">
-        <h2>Projelerim</h2>
+        <h2>Öne Çıkan Projelerim</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <h3>🌐 Kişisel Web Sitesi</h3>
-                <p>Modern ve responsive tasarıma sahip kişisel portföy web sitesi. HTML, CSS ve JavaScript kullanılarak geliştirildi.</p>
+                <div class="project-icon">🛒</div>
+                <h3>E-Ticaret Platformu</h3>
+                <p>React ve Node.js kullanılarak geliştirilmiş tam özellikli bir e-ticaret web uygulaması. Ödeme sistemi, kullanıcı yönetimi ve admin paneli içerir.</p>
+                <div class="project-tags">
+                    <span class="tag">React</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">MongoDB</span>
+                    <span class="tag">Stripe</span>
+                </div>
             </div>
             <div class="project-card">
-                <h3>📱 To-Do Uygulaması</h3>
-                <p>Görev yönetimi için kullanıcı dostu bir uygulama. Local storage ile veri saklama özelliği içerir.</p>
+                <div class="project-icon">📊</div>
+                <h3>Veri Görselleştirme Dashboard</h3>
+                <p>Python ve Plotly kullanılarak gerçek zamanlı veri analizi ve interaktif grafikler sunan bir dashboard uygulaması.</p>
+                <div class="project-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Plotly</span>
+                    <span class="tag">Pandas</span>
+                    <span class="tag">Flask</span>
+                </div>
             </div>
             <div class="project-card">
-                <h3>🎮 Basit Oyun</h3>
-                <p>JavaScript ile geliştirilmiş interaktif bir tarayıcı oyunu. Skor sistemi ve animasyonlar içerir.</p>
+                <div class="project-icon">💬</div>
+                <h3>Real-Time Chat Uygulaması</h3>
+                <p>WebSocket teknolojisi kullanılarak geliştirilen anlık mesajlaşma uygulaması. Grup sohbetleri, dosya paylaşımı ve emoji desteği.</p>
+                <div class="project-tags">
+                    <span class="tag">Socket.io</span>
+                    <span class="tag">Express</span>
+                    <span class="tag">Vue.js</span>
+                </div>
             </div>
             <div class="project-card">
-                <h3>📊 Veri Analizi Projesi</h3>
-                <p>Python ve pandas kütüphanesi kullanarak gerçekleştirilen veri analizi ve görselleştirme projesi.</p>
+                <div class="project-icon">🤖</div>
+                <h3>AI Chatbot</h3>
+                <p>Doğal dil işleme teknikleri kullanılarak geliştirilmiş yapay zeka destekli chatbot. Müşteri hizmetleri otomasyonu için ideal.</p>
+                <div class="project-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">NLP</span>
+                    <span class="tag">TensorFlow</span>
+                </div>
             </div>
             <div class="project-card">
-                <h3>🤖 Chatbot</h3>
-                <p>Basit bir AI chatbot uygulaması. Doğal dil işleme teknikleri kullanılarak geliştirildi.</p>
+                <div class="project-icon">📱</div>
+                <h3>Mobil Fitness Takip Uygulaması</h3>
+                <p>React Native ile geliştirilmiş cross-platform fitness ve sağlık takip uygulaması. Antrenman planları ve kalori hesaplama özellikleri.</p>
+                <div class="project-tags">
+                    <span class="tag">React Native</span>
+                    <span class="tag">Firebase</span>
+                    <span class="tag">Redux</span>
+                </div>
             </div>
             <div class="project-card">
-                <h3>💻 API Entegrasyonu</h3>
-                <p>Dış API'lardan veri çeken ve işleyen bir web uygulaması. REST API kullanımı içerir.</p>
+                <div class="project-icon">🎮</div>
+                <h3>Browser Based Game</h3>
+                <p>HTML5 Canvas ve JavaScript kullanılarak geliştirilen interaktif tarayıcı oyunu. Skor sistemi, seviye ilerlemesi ve leaderboard.</p>
+                <div class="project-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Canvas</span>
+                    <span class="tag">LocalStorage</span>
+                </div>
             </div>
         </div>
     </div>
@@ -411,31 +804,89 @@
 
 <section id="contact">
     <div class="content-section">
-        <h2>İletişim</h2>
+        <h2>Benimle İletişime Geçin</h2>
         <form class="contact-form" onsubmit="handleSubmit(event)">
             <div class="form-group">
-                <label for="name">Adınız</label>
-                <input type="text" id="name" required>
+                <label for="name">Adınız Soyadınız</label>
+                <input type="text" id="name" placeholder="Adınızı girin" required>
             </div>
             <div class="form-group">
-                <label for="email">E-posta</label>
-                <input type="email" id="email" required>
+                <label for="email">E-posta Adresiniz</label>
+                <input type="email" id="email" placeholder="ornek@email.com" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Konu</label>
+                <input type="text" id="subject" placeholder="Mesajınızın konusu" required>
             </div>
             <div class="form-group">
                 <label for="message">Mesajınız</label>
-                <textarea id="message" required></textarea>
+                <textarea id="message" placeholder="Mesajınızı buraya yazın..." required></textarea>
             </div>
-            <button type="submit">Gönder</button>
+            <button type="submit">Mesajı Gönder</button>
         </form>
-        <div style="text-align: center; margin-top: 2rem;">
-            <p><strong>E-posta:</strong> your.email@example.com</p>
-            <p><strong>GitHub:</strong> github.com/kullaniciadi</p>
-            <p><strong>LinkedIn:</strong> linkedin.com/in/kullaniciadi</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-item-icon">📧</div>
+                <h3>E-posta</h3>
+                <p>ahmet.yilmaz@email.com</p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-item-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <p>linkedin.com/in/ahmetyilmaz</p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-item-icon">🐙</div>
+                <h3>GitHub</h3>
+                <p>github.com/ahmetyilmaz</p>
+            </div>
         </div>
     </div>
 </section>
 
 <script>
+    // Typing animation
+    const texts = [
+        "Web Uygulamaları Geliştiriyorum 💻",
+        "Veri Bilimi ile İlgileniyorum 📊",
+        "Open Source'a Katkıda Bulunuyorum 🚀",
+        "Sürekli Öğreniyorum 📚"
+    ];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseTime = 2000;
+
+    function typeText() {
+        const currentText = texts[textIndex];
+        const typingElement = document.getElementById('typingText');
+
+        if (!isDeleting) {
+            typingElement.textContent = currentText.substring(0, charIndex);
+            charIndex++;
+
+            if (charIndex > currentText.length) {
+                isDeleting = true;
+                setTimeout(typeText, pauseTime);
+                return;
+            }
+        } else {
+            typingElement.textContent = currentText.substring(0, charIndex);
+            charIndex--;
+
+            if (charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+        }
+
+        setTimeout(typeText, isDeleting ? deletingSpeed : typingSpeed);
+    }
+
+    typeText();
+
     // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -453,27 +904,55 @@
     // Form submission
     function handleSubmit(e) {
         e.preventDefault();
-        alert('Mesajınız için teşekkürler! Bu bir demo olduğu için mesaj gerçekten gönderilmedi.');
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+
+        alert(`Teşekkürler ${name}! Mesajınız alındı. En kısa sürede size dönüş yapacağım.\n\nBu bir demo olduğu için mesaj gerçekten gönderilmedi.`);
         e.target.reset();
     }
 
-    // Skill bar animation on scroll
+    // Intersection Observer for animations
     const observerOptions = {
-        threshold: 0.5
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.querySelectorAll('.skill-progress').forEach(bar => {
-                    bar.style.width = bar.style.width;
-                });
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
     }, observerOptions);
 
-    document.querySelectorAll('.skills-grid').forEach(grid => {
-        observer.observe(grid);
+    document.querySelectorAll('.skill-card, .project-card, .stat-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease-out';
+        observer.observe(el);
+    });
+
+    // Active nav link
+    window.addEventListener('scroll', () => {
+        let current = '';
+        document.querySelectorAll('section').forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        document.querySelectorAll('nav a').forEach(a => {
+            a.style.color = '#fff';
+            if (a.getAttribute('href') === `#${current}`) {
+                a.style.color = '#667eea';
+            }
+        });
     });
 </script>
 </body>
