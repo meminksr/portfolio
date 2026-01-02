@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portföyüm</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #hero {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+            text-align: center;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-bar {
+            background: rgba(255,255,255,0.3);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .skill-progress {
+            background: white;
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .project-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2rem;
+            }
+
+            #hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo">Portföyüm</div>
+        <ul>
+            <li><a href="#hero">Ana Sayfa</a></li>
+            <li><a href="#about">Hakkımda</a></li>
+            <li><a href="#skills">Yetenekler</a></li>
+            <li><a href="#projects">Projeler</a></li>
+            <li><a href="#contact">İletişim</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="hero">
+    <h1>Merhaba, Ben [MEHMET]</h1>
+    <p>Yazılım Geliştirici & Programlama Öğrencisi</p>
+    <a href="#about" class="btn">Daha Fazla Keşfet</a>
+</section>
+
+<section id="about">
+    <div class="content-section">
+        <h2>Hakkımda</h2>
+        <div class="about-content">
+            <div class="profile-img">👨‍💻</div>
+            <div>
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                    Merhaba! Ben programlama alanında kendimi geliştiren tutkulu bir öğrenciyim.
+                    Teknolojiye olan ilgim sayesinde her gün yeni şeyler öğreniyor ve projeler geliştiriyorum.
+                </p>
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                    Web geliştirme, mobil uygulama tasarımı ve yazılım mühendisliği konularında deneyim kazanıyorum.
+                    Amacım, kullanıcı dostu ve etkili çözümler üreterek teknoloji dünyasına katkıda bulunmak.
+                </p>
+                <p style="font-size: 1.1rem;">
+                    Sürekli öğrenmeye ve kendimi geliştirmeye açığım. Yeni teknolojileri takip ediyor ve
+                    pratik projelerle bilgimi pekiştiriyorum.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <div class="content-section">
+        <h2>Yetenekler & Beceriler</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Web Geliştirme</h3>
+                <p>HTML, CSS, JavaScript ile modern web siteleri geliştirme</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Python</h3>
+                <p>Veri analizi, otomasyon ve backend geliştirme</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Java</h3>
+                <p>Nesne yönelimli programlama ve uygulama geliştirme</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 70%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Veritabanı</h3>
+                <p>SQL, MySQL ile veri yönetimi</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 65%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Git & GitHub</h3>
+                <p>Versiyon kontrolü ve işbirliği</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Problem Çözme</h3>
+                <p>Algoritmik düşünme ve analitik yaklaşım</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="content-section">
+        <h2>Projelerim</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>🌐 Kişisel Web Sitesi</h3>
+                <p>Modern ve responsive tasarıma sahip kişisel portföy web sitesi. HTML, CSS ve JavaScript kullanılarak geliştirildi.</p>
+            </div>
+            <div class="project-card">
+                <h3>📱 To-Do Uygulaması</h3>
+                <p>Görev yönetimi için kullanıcı dostu bir uygulama. Local storage ile veri saklama özelliği içerir.</p>
+            </div>
+            <div class="project-card">
+                <h3>🎮 Basit Oyun</h3>
+                <p>JavaScript ile geliştirilmiş interaktif bir tarayıcı oyunu. Skor sistemi ve animasyonlar içerir.</p>
+            </div>
+            <div class="project-card">
+                <h3>📊 Veri Analizi Projesi</h3>
+                <p>Python ve pandas kütüphanesi kullanarak gerçekleştirilen veri analizi ve görselleştirme projesi.</p>
+            </div>
+            <div class="project-card">
+                <h3>🤖 Chatbot</h3>
+                <p>Basit bir AI chatbot uygulaması. Doğal dil işleme teknikleri kullanılarak geliştirildi.</p>
+            </div>
+            <div class="project-card">
+                <h3>💻 API Entegrasyonu</h3>
+                <p>Dış API'lardan veri çeken ve işleyen bir web uygulaması. REST API kullanımı içerir.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="content-section">
+        <h2>İletişim</h2>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Adınız</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-posta</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Mesajınız</label>
+                <textarea id="message" required></textarea>
+            </div>
+            <button type="submit">Gönder</button>
+        </form>
+        <div style="text-align: center; margin-top: 2rem;">
+            <p><strong>E-posta:</strong> your.email@example.com</p>
+            <p><strong>GitHub:</strong> github.com/kullaniciadi</p>
+            <p><strong>LinkedIn:</strong> linkedin.com/in/kullaniciadi</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Form submission
+    function handleSubmit(e) {
+        e.preventDefault();
+        alert('Mesajınız için teşekkürler! Bu bir demo olduğu için mesaj gerçekten gönderilmedi.');
+        e.target.reset();
+    }
+
+    // Skill bar animation on scroll
+    const observerOptions = {
+        threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.skill-progress').forEach(bar => {
+                    bar.style.width = bar.style.width;
+                });
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.skills-grid').forEach(grid => {
+        observer.observe(grid);
+    });
+</script>
+</body>
+</html>
